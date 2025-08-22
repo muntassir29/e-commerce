@@ -1,29 +1,39 @@
+// import React from "react";
+// import Product from "./components/product";
+
+// function App() {
+//   return (
+//     <div className="min-h-screen bg-gray-100">
+//       <header className="bg-white shadow p-4 text-center text-2xl font-bold">
+//         Mon E-commerce Mono-produit
+//       </header>
+
+//       <main className="p-6">
+//         <Product />
+//       </main>
+
+//       <footer className="bg-white shadow p-4 text-center mt-10">
+//         &copy; {new Date().getFullYear()} Mon E-commerce
+//       </footer>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import ProductDetail from "./pages/ProductDetail";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import Product from "./components/product";
 
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow max-w-7xl mx-auto px-4 py-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        <Route path="/product/:id" element={<Product />} />
+      </Routes>
     </Router>
   );
 }
+
 export default App;
+
