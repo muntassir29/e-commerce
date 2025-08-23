@@ -1,36 +1,22 @@
-// import React from "react";
-// import Product from "./components/product";
-
-// function App() {
-//   return (
-//     <div className="min-h-screen bg-gray-100">
-//       <header className="bg-white shadow p-4 text-center text-2xl font-bold">
-//         Mon E-commerce Mono-produit
-//       </header>
-
-//       <main className="p-6">
-//         <Product />
-//       </main>
-
-//       <footer className="bg-white shadow p-4 text-center mt-10">
-//         &copy; {new Date().getFullYear()} Mon E-commerce
-//       </footer>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Product from "./components/product";
+import Home from "./pages/Home";
+import Success from "./pages/Success";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/product/:id" element={<Product />} />
-      </Routes>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/success" element={<Success />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }
