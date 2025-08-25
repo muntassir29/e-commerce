@@ -6,7 +6,7 @@ export default function Navbar() {
         href="#order"
         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
       >
-        Acheter maintenant
+        SHOP NOW
       </a>
     </nav>
   );
