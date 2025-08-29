@@ -13,8 +13,8 @@ function App() {
         {/* Navbar toujours en haut */}
         <Navbar />
 
-        {/* Contenu principal */}
-        <main className="flex-1">
+        {/* Contenu principal (ajout pt pour compenser la navbar) */}
+        <main className="flex-1 pt-32">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/success" element={<Success />} />
@@ -31,5 +31,6 @@ function App() {
 }
 
 export default App;
+
 
 
