@@ -1,20 +1,100 @@
-const features = [
-  "Qualité premium garantie",
-  "Livraison rapide et sécurisée",
-  "Satisfait ou remboursé",
-];
+// import { FaShippingFast, FaLock, FaHeadset, FaStar } from "react-icons/fa";
+
+// export default function Features() {
+//   const features = [
+//     {
+//       icon: <FaShippingFast className="text-4xl text-blue-600 mb-4" />,
+//       title: "Livraison rapide",
+//       desc: "Recevez vos commandes en un temps record, partout au Maroc.",
+//     },
+//     {
+//       icon: <FaLock className="text-4xl text-blue-600 mb-4" />,
+//       title: "Paiement sécurisé",
+//       desc: "Vos transactions sont 100% sécurisées avec nos partenaires bancaires.",
+//     },
+//     {
+//       icon: <FaHeadset className="text-4xl text-blue-600 mb-4" />,
+//       title: "Support 24/7",
+//       desc: "Notre équipe est disponible jour et nuit pour répondre à vos questions.",
+//     },
+//     {
+//       icon: <FaStar className="text-4xl text-blue-600 mb-4" />,
+//       title: "Qualité garantie",
+//       desc: "Produits certifiés et qualité premium, satisfait ou remboursé.",
+//     },
+//   ];
+
+//   return (
+//     <section className="py-16 bg-gray-50">
+//       <div className="max-w-7xl mx-auto px-6 text-center">
+//         <h2 className="text-3xl font-bold text-gray-900 mb-12">Pourquoi nous choisir ?</h2>
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+//           {features.map((feature, index) => (
+//             <div
+//               key={index}
+//               className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition duration-300"
+//             >
+//               {feature.icon}
+//               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+//               <p className="text-gray-600 text-sm">{feature.desc}</p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+
+
+import { FaShippingFast, FaLock, FaHeadset, FaStar } from "react-icons/fa";
 
 export default function Features() {
+  const features = [
+    {
+      icon: <FaShippingFast className="text-4xl text-blue-600 mb-4" />,
+      title: "Livraison rapide",
+      desc: "Recevez vos commandes en un temps record, partout au Maroc.",
+    },
+    {
+      icon: <FaLock className="text-4xl text-blue-600 mb-4" />,
+      title: "Paiement sécurisé",
+      desc: "Vos transactions sont 100% sécurisées avec nos partenaires bancaires.",
+    },
+    {
+      icon: <FaHeadset className="text-4xl text-blue-600 mb-4" />,
+      title: "Support 24/7",
+      desc: "Notre équipe est disponible jour et nuit pour répondre à vos questions.",
+    },
+    {
+      icon: <FaStar className="text-4xl text-blue-600 mb-4" />,
+      title: "Qualité garantie",
+      desc: "Produits certifiés et qualité premium, satisfait ou remboursé.",
+    },
+  ];
+
   return (
-    <section className="py-16 px-6 bg-white">
-      <h3 className="text-3xl font-semibold text-center mb-8">Pourquoi nous choisir ?</h3>
-      <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {features.map((f, i) => (
-          <div key={i} className="p-6 shadow-lg rounded-lg bg-gray-50">
-            <p className="text-lg font-medium text-gray-700">{f}</p>
-          </div>
-        ))}
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <h2 className="text-3xl font-bold text-gray-900 mb-12">Pourquoi nous choisir ?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition duration-300"
+            >
+              {feature.icon}
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600 text-sm">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
+
+
+
+

@@ -3,6 +3,7 @@ import axios from "axios";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
 import CheckoutForm from "../components/CheckoutForm";
+import TestimonialsSlider from "../components/TestimonialsSlider"; // nouveau slider
 
 export default function Home() {
   const [product, setProduct] = useState(null);
@@ -19,13 +20,26 @@ export default function Home() {
     fetchProduct();
   }, []);
 
-  if (!product) return <p className="text-center mt-10">Chargement du produit...</p>;
+  if (!product) 
+    return (
+      <p className="text-center mt-20 text-lg font-medium text-gray-700">
+        Chargement du produit...
+      </p>
+    );
 
   return (
-    <>
+    <div className="flex flex-col items-center">
+      {/* Section Hero */}
       <Hero product={product} />
+
+      {/* Section Features */}
       <Features />
+
+      {/* Section Avis Clients (Slider) */}
+      <TestimonialsSlider />
+
+      {/* Section Checkout */}
       <CheckoutForm product={product} />
-    </>
+    </div>
   );
 }
