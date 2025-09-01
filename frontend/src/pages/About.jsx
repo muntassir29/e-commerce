@@ -1,13 +1,16 @@
 export default function About() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold mb-4">About Us</h1>
-      <p className="text-gray-700 leading-relaxed">
-        Wallet Tracker est un dispositif électronique ultra-mince qui vous
-        aide à localiser vos objets de valeur avec précision. 
-        Compatible avec l’application Apple Find My, il combine fiabilité,
-        autonomie longue durée et design élégant.
+    <section className="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h1 className="text-4xl font-bold text-gray-900 mb-6">À propos</h1>
+      <p className="text-lg text-gray-700 mb-4">
+        Nous sommes une boutique en ligne marocaine spécialisée dans la vente de
+        produits premium. Notre mission est de vous offrir une expérience
+        d’achat simple, rapide et sécurisée.
       </p>
-    </div>
+      <p className="text-lg text-gray-700">
+        Grâce à nos partenaires logistiques et bancaires, nous assurons une
+        livraison rapide et un paiement fiable pour tous nos clients.
+      </p>
+    </section>
   );
 }
