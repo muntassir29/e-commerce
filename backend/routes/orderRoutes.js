@@ -94,9 +94,9 @@ router.post("/", async (req, res) => {
     const itemsHtml = items
       .map(
         (it) =>
-          `<li>${it.name} — ${it.qty} x ${it.price} MAD = ${
+          `<li>${it.name} — ${it.qty} x ${it.price} $ = ${
             it.qty * it.price
-          } MAD</li>`
+          } $ </li>`
       )
       .join("");
 
@@ -110,7 +110,7 @@ router.post("/", async (req, res) => {
         <p><b>Téléphone:</b> ${phone}</p>
         <p><b>Email:</b> ${email || "-"}</p>
         <p><b>Adresse:</b> ${address}</p>
-        <p><b>Total:</b> ${total} MAD</p>
+        <p><b>Total:</b> ${total} $ </p>
         <h3>Articles:</h3>
         <ul>${itemsHtml}</ul>
       `,
