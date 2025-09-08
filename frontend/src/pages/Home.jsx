@@ -122,13 +122,13 @@ export default function Home() {
             className="rounded-3xl overflow-hidden shadow-2xl relative"
           >
             <video
-              src={blackCardVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-[320px] md:h-[420px] lg:h-[520px] object-cover rounded-2xl"
-            />
+  src={blackCardVideo}
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="w-full h-[450px] md:h-[500px] lg:h-[620px] object-cover rounded-2xl"
+/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
           </motion.div>
 
