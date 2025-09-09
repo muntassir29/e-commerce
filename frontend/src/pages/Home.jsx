@@ -85,20 +85,38 @@ export default function Home() {
             Localisez vos objets de valeur grâce à Apple Find My, étanche, rechargeable sans fil, ultra-fine.
           </motion.p>
 
-          {products.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <Link
-                to={`/product/${products[0]._id}`}
-                className="px-12 py-4 rounded-full text-lg font-bold shadow-xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white hover:scale-105 hover:shadow-2xl transition transform"
-              >
-                Découvrir le produit
-              </Link>
-            </motion.div>
-          )}
+             {products.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            className="flex justify-center"
+          >
+          <Link
+            to={`/product/${products[0]._id}`}
+            className="relative px-12 py-4 rounded-full text-lg font-bold text-white
+                 shadow-xl overflow-hidden group"
+          >  
+        {/* --- Gradient animé en arrière-plan --- */}
+          <span className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 
+                       animate-gradient-x group-hover:opacity-100 transition-opacity duration-500"></span>
+
+        {/* --- Overlay foncé léger pour lisibilité --- */}
+          <span className="absolute inset-0 bg-black/20"></span>
+
+        {/* --- Texte du bouton avec animation --- */}
+          <motion.span
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.8 }}
+            className="relative z-10 group-hover:tracking-wider transition-all duration-300"
+          >
+            Découvrir le produit
+         </motion.span>
+       </Link>
+     </motion.div>
+     )}
+
 
           {/* Slider indicators */}
           <div className="flex gap-3 mt-8">
