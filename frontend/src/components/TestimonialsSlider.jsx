@@ -1,18 +1,20 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const testimonials = [
   {
     name: "Ahmed",
-    text: "Livraison rapide et produit conforme. Je recommande vivement !",
+    text: "Livraison ultra rapide et produit conforme ! Je recommande à 100%.",
   },
   {
     name: "Fatima",
-    text: "Service client excellent, j’ai eu toutes mes réponses immédiatement.",
+    text: "Un service client exceptionnel, toujours disponible pour m’aider.",
   },
   {
     name: "Youssef",
-    text: "Très satisfait de la qualité, je commanderai encore 👍",
+    text: "La qualité est au rendez-vous, je suis très satisfait de mon achat !",
   },
 ];
 
@@ -24,11 +26,17 @@ export default function TestimonialsSlider() {
     setIndex((index - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-12">
-          Avis de nos clients
-        </h2>
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl font-bold text-gray-900 mb-12"
+        >
+          Ce que disent nos clients
+        </motion.h2>
+
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
@@ -37,31 +45,46 @@ export default function TestimonialsSlider() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-50 p-8 rounded-2xl shadow-lg"
+              className="bg-white shadow-xl rounded-3xl p-10 max-w-2xl mx-auto border border-gray-100 relative"
             >
-              <p className="text-lg text-gray-700 mb-4 italic">
+              <FaQuoteLeft className="text-indigo-500 text-4xl mx-auto mb-4 opacity-80" />
+              <p className="text-lg text-gray-700 mb-6 italic">
                 "{testimonials[index].text}"
               </p>
-              <h4 className="font-semibold text-gray-900">
+              <h4 className="font-semibold text-gray-900 text-xl">
                 – {testimonials[index].name}
               </h4>
             </motion.div>
           </AnimatePresence>
 
+          {/* Boutons de navigation */}
           <button
             onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 shadow-lg transition"
           >
-            ‹
+            <FaChevronLeft />
           </button>
           <button
             onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 shadow-lg transition"
           >
-            ›
+            <FaChevronRight />
           </button>
+        </div>
+
+        {/* Indicateurs en bas */}
+        <div className="flex justify-center mt-6 space-x-3">
+          {testimonials.map((_, i) => (
+            <span
+              key={i}
+              className={`h-2 w-2 rounded-full transition-all ${
+                i === index ? "bg-indigo-600 w-6" : "bg-gray-300"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
