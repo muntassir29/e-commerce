@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -10,6 +9,7 @@ import ProductHighlights from "../components/ProductHighlights";
 // Images locales
 import pexels1 from "../assets/pexels1.jpg";
 import pexels2 from "../assets/pexels2.jpg";
+import map2 from "../assets/map2.jpg";
 
 // Vidéo locale
 import blackCardVideo from "../assets/the_blackard_1.mp4";
@@ -45,9 +45,8 @@ export default function Home() {
 
   return (
     <div className="w-full h-full bg-gray-50 relative">
-
       {/* --- HERO / SLIDER --- */}
-      <section className="relative w-full h-[85vh] md:h-[95vh] overflow-hidden">
+      <section className="relative w-full h-[90vh] overflow-hidden">
         {sliderImages.map((img, index) => (
           <motion.div
             key={index}
@@ -82,41 +81,25 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-lg sm:text-xl md:text-2xl max-w-2xl mb-8 drop-shadow-md"
           >
-            Localisez vos objets de valeur grâce à Apple Find My, étanche, rechargeable sans fil, ultra-fine.
+            Localisez vos objets de valeur grâce à Apple Find My, étanche,
+            rechargeable sans fil, ultra-fine.
           </motion.p>
 
-             {products.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="flex justify-center"
-          >
-          <Link
-            to={`/product/${products[0]._id}`}
-            className="relative px-12 py-4 rounded-full text-lg font-bold text-white
-                 shadow-xl overflow-hidden group"
-          >  
-        {/* --- Gradient animé en arrière-plan --- */}
-          <span className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 
-                       animate-gradient-x group-hover:opacity-100 transition-opacity duration-500"></span>
-
-        {/* --- Overlay foncé léger pour lisibilité --- */}
-          <span className="absolute inset-0 bg-black/20"></span>
-
-        {/* --- Texte du bouton avec animation --- */}
-          <motion.span
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.8 }}
-            className="relative z-10 group-hover:tracking-wider transition-all duration-300"
-          >
-            Découvrir le produit
-         </motion.span>
-       </Link>
-     </motion.div>
-     )}
-
+          {products.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              className="flex justify-center"
+            >
+              <Link
+                to={`/product/${products[0]._id}`}
+                className="relative px-10 py-4 rounded-full text-lg font-semibold text-white bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-600 shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300"
+              >
+                Découvrir le produit
+              </Link>
+            </motion.div>
+          )}
 
           {/* Slider indicators */}
           <div className="flex gap-3 mt-8">
@@ -124,7 +107,9 @@ export default function Home() {
               <motion.div
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
-                className={`w-4 h-4 rounded-full cursor-pointer ${currentSlide === idx ? "bg-white" : "bg-gray-400/50"}`}
+                className={`w-4 h-4 rounded-full cursor-pointer ${
+                  currentSlide === idx ? "bg-white" : "bg-gray-400/50"
+                }`}
                 whileHover={{ scale: 1.5 }}
               />
             ))}
@@ -190,7 +175,7 @@ export default function Home() {
 
               <Link
                 to={`/product/${products[0]._id}`}
-                className="px-10 py-3 rounded-full text-lg font-bold shadow-xl bg-gradient-to-r from-purple-600 via-violet-700 to-indigo-700 text-white hover:scale-105 hover:shadow-2xl transition transform"
+                className="px-10 py-3 rounded-full text-lg font-semibold shadow-lg bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-600 text-white hover:scale-105 hover:shadow-2xl transition-transform"
               >
                 Voir le produit
               </Link>
@@ -198,6 +183,70 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* --- Nouvelle Section Map --- */}
+      {products.length > 0 && (
+        <section className="relative w-full h-[45vh] md:h-[50vh] overflow-hidden">
+          {/* Image de fond */}
+          <motion.img
+            src={map2}
+            alt="Carte mondiale"
+            initial={{ scale: 1.1, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* Overlay dégradé */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          />
+
+          {/* Contenu centré */}
+          <div className="relative z-10 flex flex-col justify-center items-center text-center h-full px-6">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4 max-w-2xl"
+            >
+              Suivez vos biens partout dans le monde
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-lg md:text-xl text-white/90 max-w-xl mb-8 drop-shadow-md"
+            >
+              Notre technologie vous permet de localiser vos objets avec une
+              précision incroyable grâce à l'intégration Apple Find My.
+            </motion.p>
+
+            {/* Bouton modernisé */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                to={`/product/${products[0]._id}`}
+                className="relative px-10 py-4 rounded-full text-lg font-semibold text-white bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-600 shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300"
+              >
+                Acheter maintenant
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* --- Features généraux --- */}
       <Features />
@@ -238,7 +287,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12 text-lg md:text-xl text-white/90 max-w-xl mx-auto"
           >
-            Recevez nos offres exclusives, nouveautés et conseils directement dans votre boîte mail.
+            Recevez nos offres exclusives, nouveautés et conseils directement
+            dans votre boîte mail.
           </motion.p>
 
           <motion.form
@@ -280,7 +330,7 @@ export default function Home() {
         >
           <Link
             to={`/product/${products[0]._id}`}
-            className="px-6 py-3 rounded-full text-lg font-bold shadow-2xl bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600 text-white hover:scale-105 hover:shadow-3xl transition transform"
+            className="relative px-6 py-3 rounded-full text-lg font-semibold text-white bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-600 shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300"
           >
             Acheter maintenant
           </Link>
@@ -289,6 +339,9 @@ export default function Home() {
     </div>
   );
 }
+
+
+
 
 
 
