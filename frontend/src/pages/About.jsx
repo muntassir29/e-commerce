@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { FaShippingFast, FaShieldAlt, FaStar, FaUsers } from "react-icons/fa";
-import { MdHighQuality, MdSupportAgent } from "react-icons/md";
+import { FaShippingFast, FaShieldAlt } from "react-icons/fa";
+import { MdHighQuality } from "react-icons/md";
 import heroImage from "../assets/about-hero.png"; // Image ou illustration pour Hero
 
 export default function About() {
@@ -23,15 +23,21 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="text-5xl md:text-6xl font-extrabold text-gray-900"
             >
-              Découvrez <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">Notre Univers</span>
+              Découvrez{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
+                Notre Univers
+              </span>
             </motion.h1>
+
             <motion.p
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg text-gray-700"
             >
-              Nous révolutionnons l'expérience d'achat en ligne au Maroc avec des produits premium, une livraison ultra rapide et un service client irréprochable.
+              Nous révolutionnons l'expérience d'achat en ligne au Maroc avec
+              des produits premium, une livraison ultra rapide et un service
+              client irréprochable.
             </motion.p>
           </div>
 
@@ -62,8 +68,10 @@ export default function About() {
             Notre Mission & Vision
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Offrir une expérience d'achat fluide et sécurisée, avec des produits de qualité, un service client réactif et une livraison rapide partout au Maroc. 
-            Nous construisons une communauté fidèle basée sur la confiance et la transparence.
+            Offrir une expérience d'achat fluide et sécurisée, avec des produits
+            de qualité, un service client réactif et une livraison rapide partout
+            au Maroc. Nous construisons une communauté fidèle basée sur la
+            confiance et la transparence.
           </p>
         </motion.div>
 
@@ -113,12 +121,12 @@ export default function About() {
             Vous voulez en savoir plus ?
           </h2>
           <p className="text-lg mb-8">
-            Contactez-nous dès maintenant et découvrez comment nous pouvons vous accompagner dans votre expérience d'achat.
+            Contactez-nous dès maintenant et découvrez comment nous pouvons vous
+            accompagner dans votre expérience d'achat.
           </p>
           <a
             href="/contact"
-            className="inline-block px-8 py-4 bg-white text-gradient font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300"
-            style={{ background: "linear-gradient(to right, #4f46e5, #8b5cf6, #ec4899)", WebkitBackgroundClip: "text", color: "transparent" }}
+            className="inline-block px-8 py-4 rounded-xl shadow-lg text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:scale-105 hover:shadow-2xl transition-transform duration-300"
           >
             Nous Contacter
           </a>
@@ -128,6 +136,7 @@ export default function About() {
     </section>
   );
 }
+
 
 
 
