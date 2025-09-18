@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  MapPin,
+} from "lucide-react";
 import GradientButton from "../components/GradientButton";
-import mapImage from "../assets/map.jpg"; // Image carte livraison
 
 // Images locales
 import img1 from "../assets/product1.png";
 import img2 from "../assets/product2.png";
 import img3 from "../assets/product3.png";
 import img4 from "../assets/product4.png";
-
+import mapImage from "../assets/map.jpg"; // Image carte livraison
 // Vidéo locale
 import productVideo from "../assets/the_blackard_2.mp4";
 
@@ -35,19 +40,16 @@ export default function Product() {
     fetchProduct();
   }, [id]);
 
-  // ---- CHARGEMENT AVEC EMOJI CERCLE ----
- 
+  // ---- LOADING ANIMATION ----
   if (!product) {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="relative w-20 h-20">
-        {/* Cercle extérieur en dégradé animé */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-spin"></div>
-        {/* Cercle intérieur blanc pour donner un effet "anneau" */}
-        <div className="absolute inset-4 rounded-full bg-white"></div>
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-spin"></div>
+          <div className="absolute inset-4 rounded-full bg-white"></div>
+        </div>
       </div>
-    </div>
-   );
+    );
   }
 
   const totalPrice = (product.price * qty).toFixed(2);
@@ -73,12 +75,10 @@ export default function Product() {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
   };
-
   const slideImage = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
   };
-
   const fadeText = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.7, delay: 0.3 } },
@@ -115,9 +115,9 @@ export default function Product() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Container principal avec padding top pour compenser la Navbar */}
+      {/* Container principal */}
       <section className="w-full px-6 py-20 max-w-7xl mx-auto flex flex-col gap-20 pt-20">
-        {/* --- SLIDER PRINCIPAL + DETAILS PRODUIT --- */}
+        {/* --- SLIDER + DETAILS PRODUIT --- */}
         <div className="flex flex-col md:flex-row gap-12 items-start">
           {/* SLIDER */}
           <motion.div
@@ -212,7 +212,6 @@ export default function Product() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {/* Vidéo */}
           <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-xl">
             <video
               src={productVideo}
@@ -223,7 +222,6 @@ export default function Product() {
             />
           </div>
 
-          {/* Texte descriptif à côté de la vidéo */}
           <div className="space-y-4">
             <h2 className="text-2xl font-bold text-gray-900">
               🎥 Découvrez WALLET TRACKER en action
@@ -242,30 +240,86 @@ export default function Product() {
         </motion.div>
       </section>
 
-      {/* --- BANDE CARTE FULL WIDTH --- */}
-      <div className="w-full relative">
-        <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden">
-          <img
-            src={mapImage}
-            alt="Carte de livraison"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-white text-center px-4">
-            </h2>
-          </div>
+      {/* --- BANDE MAP AVEC LIEN COMMANDER + APPROCHE DROITE --- */}
+      <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden">
+        <img
+          src={mapImage}
+          alt="Carte de livraison"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-between px-8">
+          {/* GAUCHE : Commander maintenant */}
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+              rotate: [0, -1.5, 1.5, 0],
+              transition: { duration: 0.3 },
+            }}
+            className="inline-block"
+          >
+            <Link
+              to="/checkout"
+              state={{ product, qty }}
+              className="group flex items-center gap-2 text-white text-2xl font-extrabold relative"
+            >
+              Commander maintenant
+              <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+
+              {/* Soulignement animé */}
+              <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          </motion.div>
+
+          {/* DROITE : Bloc Livraison animé */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-white/10 backdrop-blur-md px-5 py-4 rounded-2xl shadow-lg border border-white/20 flex items-center gap-3 text-white"
+          >
+            <motion.div
+              animate={{ y: [0, -3, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.8,
+                ease: "easeInOut",
+              }}
+            >
+              <MapPin className="w-8 h-8 text-pink-400" />
+            </motion.div>
+
+            <div className="text-sm md:text-base">
+              <p className="font-semibold">Livraison rapide</p>
+              <p className="text-gray-200">Partout au Maroc</p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* --- CONTENU EN DESSOUS --- */}
+      {/* --- SECTIONS ILLUSTRÉES --- */}
       <section className="w-full px-6 py-20 max-w-7xl mx-auto flex flex-col gap-20">
-        {/* --- SECTIONS ILLUSTRÉES --- */}
         <div className="flex flex-col gap-16">
           {[
-            { img: img1, title: "Ultra-fine, invisible, indispensable :", desc: "Seulement 3 mm d’épaisseur. Se glisse dans n’importe quel portefeuille ou bagage, sans jamais vous gêner." },
-            { img: img2, title: "Ne perdez plus jamais vos objets de valeur :", desc: "Avec Trazcard, localisez votre portefeuille ou sac depuis l'app Apple 'Localiser'. Recevez une alerte dès que vous vous en éloignez." },
-            { img: img3, title: "Robuste, étanche et toujours prête :", desc: "Jusqu’à 3 mois d’autonomie, recharge sans fil, et totalement étanche. Prête à vous suivre partout." },
-            { img: img4, title: "Rechargez votre Trazcard en toute simplicité :", desc: "Compatible avec la charge sans fil. Posez simplement la carte sur le chargeur et l’énergie se transmet automatiquement." },
+            {
+              img: img1,
+              title: "Ultra-fine, invisible, indispensable :",
+              desc: "Seulement 3 mm d’épaisseur. Se glisse dans n’importe quel portefeuille ou bagage, sans jamais vous gêner.",
+            },
+            {
+              img: img2,
+              title: "Ne perdez plus jamais vos objets de valeur :",
+              desc: "Avec Trazcard, localisez votre portefeuille ou sac depuis l'app Apple 'Localiser'. Recevez une alerte dès que vous vous en éloignez.",
+            },
+            {
+              img: img3,
+              title: "Robuste, étanche et toujours prête :",
+              desc: "Jusqu’à 3 mois d’autonomie, recharge sans fil, et totalement étanche. Prête à vous suivre partout.",
+            },
+            {
+              img: img4,
+              title: "Rechargez votre Trazcard en toute simplicité :",
+              desc: "Compatible avec la charge sans fil. Posez simplement la carte sur le chargeur et l’énergie se transmet automatiquement.",
+            },
           ].map((section, index) => (
             <motion.div
               key={index}
@@ -278,7 +332,9 @@ export default function Product() {
               <img
                 src={section.img}
                 alt={`section-${index}`}
-                className={`w-full md:w-1/2 h-auto object-cover rounded-xl ${index % 2 === 1 ? "md:order-2" : ""}`}
+                className={`w-full md:w-1/2 h-auto object-cover rounded-xl ${
+                  index % 2 === 1 ? "md:order-2" : ""
+                }`}
               />
               <p className="text-gray-700 text-lg md:w-1/2">
                 <strong>{section.title}</strong> {section.desc}
@@ -296,14 +352,23 @@ export default function Product() {
 
             <div className="space-y-4">
               {faqData.map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden"
+                >
                   <button
                     onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                     className="flex justify-between items-center w-full px-6 py-4 text-left hover:bg-gray-50 transition"
                   >
-                    <span className="text-lg font-semibold text-gray-800">{item.question}</span>
+                    <span className="text-lg font-semibold text-gray-800">
+                      {item.question}
+                    </span>
                     <span className="ml-4 text-indigo-500">
-                      {openFAQ === index ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+                      {openFAQ === index ? (
+                        <ChevronUp className="w-6 h-6" />
+                      ) : (
+                        <ChevronDown className="w-6 h-6" />
+                      )}
                     </span>
                   </button>
 
@@ -329,6 +394,9 @@ export default function Product() {
     </div>
   );
 }
+
+
+
 
 
 
