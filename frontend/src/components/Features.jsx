@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { FaShippingFast, FaLock, FaHeadset, FaStar } from "react-icons/fa";
 
 export default function Features() {
+
   const features = [
+
     {
       icon: <FaShippingFast className="text-5xl text-indigo-500 group-hover:text-indigo-600 transition duration-300" />,
       title: "Livraison Rapide",
@@ -31,10 +33,12 @@ export default function Features() {
   ];
 
   return (
+
     <section className="relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center">
         
         {/* Titre animé */}
+
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,6 +59,7 @@ export default function Features() {
         </motion.p>
 
         {/* Grille des features */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {features.map((f, i) => (
             <motion.div
@@ -66,9 +71,11 @@ export default function Features() {
               className="group relative bg-white rounded-3xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-2 duration-300 border border-gray-100 overflow-hidden"
             >
               {/* Glow en arrière-plan */}
+
               <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br ${f.color}`} />
 
               {/* Contenu de la carte */}
+              
               <div className="relative p-8 z-10">
                 <div className="flex justify-center mb-6">
                   <div className="p-5 rounded-full bg-white shadow-lg">
