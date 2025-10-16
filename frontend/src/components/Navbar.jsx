@@ -17,6 +17,7 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50">
       {/* --- Bandeau promo --- */}
+
       <div className="bg-white text-black font-semibold overflow-hidden border-b border-gray-200">
         <motion.div
           className="whitespace-nowrap py-2"
@@ -28,8 +29,11 @@ function Navbar() {
       </div>
 
       {/* --- Contenu principal --- */}
+
       <div className="bg-black text-white flex items-center justify-between px-6 py-4">
+
         {/* Logo */}
+
         <Link
           to="/"
           className="flex items-center space-x-2"
@@ -39,6 +43,7 @@ function Navbar() {
         </Link>
 
         {/* Menu desktop */}
+
         <div className="hidden md:flex space-x-8 font-medium">
           {menuItems.map((item) => (
             <motion.div
@@ -59,6 +64,7 @@ function Navbar() {
         </div>
 
         {/* Bouton menu mobile */}
+
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="text-3xl">
             {isOpen ? <HiX /> : <HiMenu />}
@@ -67,6 +73,7 @@ function Navbar() {
       </div>
 
       {/* Menu mobile */}
+      
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
