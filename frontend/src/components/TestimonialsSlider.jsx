@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const testimonials = [
+
   {
     name: "Ahmed",
     text: "Livraison ultra rapide et produit conforme ! Je recommande à 100%.",
@@ -16,9 +17,11 @@ const testimonials = [
     name: "Youssef",
     text: "La qualité est au rendez-vous, je suis très satisfait de mon achat !",
   },
+
 ];
 
 export default function TestimonialsSlider() {
+
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((index + 1) % testimonials.length);
@@ -26,6 +29,7 @@ export default function TestimonialsSlider() {
     setIndex((index - 1 + testimonials.length) % testimonials.length);
 
   return (
+
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.h2
@@ -58,6 +62,7 @@ export default function TestimonialsSlider() {
           </AnimatePresence>
 
           {/* Boutons de navigation */}
+
           <button
             onClick={prev}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 shadow-lg transition"
@@ -73,6 +78,7 @@ export default function TestimonialsSlider() {
         </div>
 
         {/* Indicateurs en bas */}
+        
         <div className="flex justify-center mt-6 space-x-3">
           {testimonials.map((_, i) => (
             <span
