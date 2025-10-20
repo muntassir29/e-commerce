@@ -12,12 +12,15 @@ import {
 import GradientButton from "../components/GradientButton";
 
 // Images locales
+
 import img1 from "../assets/product1.png";
 import img2 from "../assets/product2.png";
 import img3 from "../assets/product3.png";
 import img4 from "../assets/product4.png";
 import mapImage from "../assets/map.jpg"; // Image carte livraison
+
 // Vidéo locale
+
 import productVideo from "../assets/the_blackard_2.mp4";
 
 export default function Product() {
@@ -41,6 +44,7 @@ export default function Product() {
   }, [id]);
 
   // ---- LOADING ANIMATION ----
+
   if (!product) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
@@ -53,6 +57,7 @@ export default function Product() {
   }
 
   // Formatage du prix en MAD
+
   const formatPrice = (amount) => {
     return new Intl.NumberFormat("fr-MA", {
       style: "currency",
@@ -75,6 +80,7 @@ export default function Product() {
   };
 
   // Animations
+
   const fadeLeft = {
     hidden: { opacity: 0, x: -100 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
@@ -93,6 +99,7 @@ export default function Product() {
   };
 
   // FAQ Data
+  
   const faqData = [
     {
       question: "Comment ça marche ?",
@@ -123,11 +130,17 @@ export default function Product() {
 
   return (
     <div className="min-h-screen bg-white">
+
       {/* Container principal */}
+
       <section className="w-full px-6 py-20 max-w-7xl mx-auto flex flex-col gap-20 pt-20">
+
         {/* --- SLIDER + DETAILS PRODUIT --- */}
+
         <div className="flex flex-col md:flex-row gap-12 items-start">
+
           {/* SLIDER */}
+
           <motion.div
             className="relative w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl"
             initial="hidden"
@@ -145,6 +158,7 @@ export default function Product() {
             />
 
             {/* Flèches de navigation */}
+
             {product.images.length > 1 && (
               <>
                 <button
@@ -164,6 +178,7 @@ export default function Product() {
           </motion.div>
 
           {/* DETAILS PRODUIT */}
+
           <motion.div
             className="w-full md:w-1/2 flex flex-col gap-6"
             initial="hidden"
@@ -174,11 +189,13 @@ export default function Product() {
             <p className="text-lg text-gray-600">{product.description}</p>
 
             {/* Prix en MAD */}
+
             <div className="text-3xl font-semibold text-green-600">
               {formatPrice(totalPrice)}
             </div>
 
             {/* Sélecteur de quantité */}
+
             <div className="flex items-center gap-4 mt-4">
               <button
                 onClick={() => setQty(Math.max(1, qty - 1))}
@@ -196,6 +213,7 @@ export default function Product() {
             </div>
 
             {/* Bouton Acheter */}
+
             <GradientButton
               onClick={() => navigate("/checkout", { state: { product, qty } })}
               className="mt-6 w-full md:w-auto"
@@ -204,6 +222,7 @@ export default function Product() {
             </GradientButton>
 
             {/* Infos livraison */}
+
             <div className="mt-6 space-y-2 text-gray-700">
               <p>✅ Livraison partout au Maroc en 24/48h</p>
               <p>🔒 Paiement à la livraison (Cash à la réception)</p>
@@ -214,6 +233,7 @@ export default function Product() {
         </div>
 
         {/* --- SECTION VIDÉO + DESCRIPTION --- */}
+
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
           initial={{ opacity: 0, y: 50 }}
@@ -250,6 +270,7 @@ export default function Product() {
       </section>
 
       {/* --- BANDE MAP AVEC LIEN COMMANDER + APPROCHE DROITE --- */}
+
       <div className="relative w-full h-[200px] md:h-[300px] overflow-hidden">
         <img
           src={mapImage}
@@ -257,7 +278,9 @@ export default function Product() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-between px-8">
+
           {/* GAUCHE : Commander maintenant */}
+
           <motion.div
             whileHover={{
               scale: 1.05,
@@ -275,11 +298,13 @@ export default function Product() {
               <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
 
               {/* Soulignement animé */}
+              
               <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </motion.div>
 
           {/* DROITE : Bloc Livraison animé */}
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -306,6 +331,7 @@ export default function Product() {
       </div>
 
       {/* --- SECTIONS ILLUSTRÉES --- */}
+      
       <section className="w-full px-6 py-20 max-w-7xl mx-auto flex flex-col gap-20">
         <div className="flex flex-col gap-16">
           {[ 
@@ -353,6 +379,7 @@ export default function Product() {
         </div>
 
         {/* --- FAQ ACCORDÉON --- */}
+        
         <section className="w-full flex justify-center py-16 bg-gradient-to-b from-gray-50 to-white rounded-xl shadow-sm">
           <div className="w-full max-w-3xl px-6">
             <h2 className="text-4xl font-extrabold text-center text-gray-900 mb-12">
